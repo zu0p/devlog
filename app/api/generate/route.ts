@@ -1,13 +1,14 @@
-import { buildPrompt } from "@/logics/prompt";
-import { basePrompt } from "@/logics/prompt/templates/base";
-import OpenAI from "openai";
+import { buildPrompt } from "@/logics/prompt"
+import { basePrompt } from "@/logics/prompt/templates/base"
+import { NextResponse } from "next/server"
+import OpenAI from "openai"
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-});
+})
 
 export async function POST(req: Request) {
-  const { title, keywords, style } = await req.json();
+  const { title, keywords, style } = await req.json()
 
   const response = await client.chat.completions.create({
     model: "gpt-3.5-turbo",
@@ -18,6 +19,8 @@ export async function POST(req: Request) {
         content: buildPrompt(style, { title, keywords }),
       },
     ],
-  });
-  return { res: response };
+  })
+  return NextResponse.json({
+    res: response,
+  })
 }
