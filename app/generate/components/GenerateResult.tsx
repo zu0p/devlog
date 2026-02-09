@@ -1,6 +1,6 @@
 import { GenerateResultProps } from "../types"
 
-const GenerateResult = ({ data }: GenerateResultProps) => {
+const GenerateResult = ({ value, onChange }: GenerateResultProps) => {
   return (
     <div>
       <textarea
@@ -8,7 +8,10 @@ const GenerateResult = ({ data }: GenerateResultProps) => {
           width: "100%",
           height: "400px",
         }}
-        value={`${data.title} \n ${data.content}`}
+        value={value}
+        onChange={(e) => {
+          onChange(e.target.value)
+        }}
       />
     </div>
   )

@@ -19,5 +19,6 @@ export interface GenerateActionsProps {
 }
 
 export interface GenerateResultProps {
-  data: GeneratedArticle
+  value: string
+  onChange: (value: string) => void
 }

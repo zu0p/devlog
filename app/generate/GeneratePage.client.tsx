@@ -1,7 +1,7 @@
 "use client"
 import GenerateActions from "@/app/generate/components/GenerateActions"
 import GenerateInputs from "@/app/generate/components/GenerateInputs"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { GenerateInputsState, GenerateInputsProps } from "./types"
 import { useGenerate } from "@/hooks/generate/useGenerate"
 import GenerateResult from "./components/GenerateResult"
@@ -12,6 +12,16 @@ const GeneratePage = () => {
     keywords: [],
     style: "tutorial",
   })
+  const [articleDraft, setArticleDraft] = useState<string>("")
+
+  const generateMutation = useGenerate()
+
+  useEffect(() => {
+    if (!generateMutation.data) return
+
+    const { title, content } = generateMutation.data
+    setArticleDraft(`${title}\n\n${content}`)
+  }, [generateMutation.data])
 
   const handleChange: GenerateInputsProps["onChange"] = <
     K extends keyof GenerateInputsState,
@@ -25,8 +35,6 @@ const GeneratePage = () => {
     }))
   }
 
-  const generateMutation = useGenerate()
-
   return (
     <div className="flex flex-col">
       <GenerateInputs value={inputs} onChange={handleChange} />
@@ -35,7 +43,7 @@ const GeneratePage = () => {
       />
 
       {generateMutation?.data && (
-        <GenerateResult data={generateMutation.data} />
+        <GenerateResult value={articleDraft} onChange={setArticleDraft} />
       )}
     </div>
   )
