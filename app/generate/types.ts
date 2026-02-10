@@ -1,6 +1,5 @@
 import { PromptStyle } from "@/logics/prompt"
 import { PromptParams } from "@/logics/prompt/types"
-import { GeneratedArticle } from "@/services/generate.contract"
 
 export interface GenerateInputsState extends PromptParams {
   style: PromptStyle
@@ -15,7 +14,8 @@ export interface GenerateInputsProps {
 }
 
 export interface GenerateActionsProps {
-  onMutation: () => Promise<GeneratedArticle>
+  onClick: () => void
+  disabled?: boolean
 }
 
 export interface GenerateResultProps {
