@@ -1,4 +1,4 @@
-import { PromptParams } from "@/logics/prompt/types";
+import { PromptParams } from "@/logics/prompt/types"
 
 export const tutorialPrompt = ({ title, keywords }: PromptParams) => `
 주제: ${title}
@@ -12,7 +12,7 @@ export const tutorialPrompt = ({ title, keywords }: PromptParams) => `
 5. 정리
 
 조건:
-- Markdown 형식으로 작성
-- 설명은 명확하고 간결하게
+- 설명은 명확하고 구체적으로
+- 필요 시 출처 포함
 - 불필요한 마케팅 표현은 제외
-`;
+`
