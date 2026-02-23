@@ -20,7 +20,7 @@ const EditorPage = () => {
   if (error) return <ErrorPage />
 
   return (
-    <div className="space-y-4">
+    <div className="m-3 space-y-4 md:m-0">
       <EditorHeader />
       <ToastUIEditor editorRef={editorRef} />
       <ExportActions editorRef={editorRef} />

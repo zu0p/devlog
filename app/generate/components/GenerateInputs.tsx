@@ -72,7 +72,15 @@ const GenerateInputs = ({ value, onChange }: GenerateInputsProps) => {
                   onClick={() => removeKeyword(index)}
                   className="rounded-full p-0.5 transition-colors hover:bg-blue-200 dark:hover:bg-blue-800"
                 >
-                  <div className="h-3 w-3" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="15px"
+                    width="15px"
+                    viewBox="0 -960 960 960"
+                    fill="#fff"
+                  >
+                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                  </svg>
                 </button>
               </span>
             ))}
@@ -84,7 +92,7 @@ const GenerateInputs = ({ value, onChange }: GenerateInputsProps) => {
         <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
           글 유형
         </label>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-rows-3 gap-3 md:grid-cols-3">
           {POST_TYPES.map(({ type, label }) => (
             <button
               key={type}

@@ -35,9 +35,9 @@ const GeneratePage = () => {
   }
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto h-full max-w-2xl">
       <GenerateTitle />
-      <div className="space-y-6">
+      <div className="m-3 space-y-6 md:m-0">
         <GenerateInputs value={inputs} onChange={handleChange} />
         <GenerateActions
           disabled={!inputs.title.length || generateMutation.isPending}
