@@ -9,6 +9,7 @@ export const useGenerate = () => {
   return useMutation({
     mutationFn: (payload: GenerateContract["request"]) =>
       generateArticle(payload),
+    retry: false,
     onSuccess: (data) => {
       const fullArticleContent = `${data.title}\n\n${data.content}`
       setGeneratedArticle(fullArticleContent)
