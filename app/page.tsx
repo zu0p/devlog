@@ -1,18 +1,41 @@
-"use client"
-import { useRouter } from "next/navigation"
+import Image from "next/image"
+import LandingTitle from "./components/LandingTitle"
+import GenerateButton from "./components/GenerateButton"
+import Features from "./components/Features"
+import HowItWorks from "./components/HowItWorks"
 
 export default function Home() {
-  const router = useRouter()
-  const handleToGenerate = () => {
-    router.push("/generate")
-  }
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between bg-white px-16 py-32 sm:items-start dark:bg-black">
-        <h1>기술블로그 글 생성기</h1>
-        <button onClick={handleToGenerate}>생성</button>
-      </main>
+    <div className="m-3 mx-auto max-w-6xl">
+      <div className="mb-12 text-center">
+        <LandingTitle />
+        <GenerateButton
+          desc={"글 생성하기"}
+          isIcon={true}
+          shadow={true}
+          size={"lg"}
+        />
+      </div>
+
+      <div className="mb-16 flex w-full justify-center overflow-hidden">
+        <Image
+          alt="DevLogAI - 기술 블로그 생성"
+          src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&h=600&fit=crop"
+          width={600}
+          height={400}
+        />
+      </div>
+
+      <Features />
+
+      <div className="rounded-2xl bg-gray-50 p-8 md:p-12 dark:bg-gray-800">
+        <div className="mt-8 flex flex-col text-center">
+          <HowItWorks />
+          <div className="mt-12 md:mt-8">
+            <GenerateButton desc={"지금 시작하기"} />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
