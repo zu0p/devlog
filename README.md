@@ -13,10 +13,14 @@ Developer + blog = **Devlog**😈!
 
 개발 과정에서 정리해야 할 내용은 많지만 구조를 잡고 Markdown으로 정리하며 SEO까지 신경 쓰는 것은 상당한 피로감을 유발합니다. 이 프로젝트는 AI를 글쓰기 대체 도구가 아닌 **글 작성을 가속하는 개발 도구**로 활용하는 데 초점을 맞춥니다.
 
-- 시연 영상(desktop ver)
-  
+### 시연 영상
+- desktop - dark mode
+
   https://github.com/user-attachments/assets/2fd316a5-8337-4c71-9d8b-abc35424fb1c
 
+- mobile - light mode
+  
+  https://github.com/user-attachments/assets/1dd070c3-78c6-49aa-b5c5-fd6a92fbc43e
 
 ## 🎯 개발 목표
 
