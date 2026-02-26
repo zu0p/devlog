@@ -5,7 +5,8 @@ export const basePrompt = () => `
 조건:
 - Markdown 형식으로 작성
 
-응답은 반드시 아래 JSON 형식으로만 해주세요:
+응답은 반드시 하나의 JSON 객체만 반환해야한다.
+응답 JSON은 아래의 형식으로만 해주세요:
 {
   "title": "SEO에 최적화된 제목",
   "content": "마크다운 형식의 본문",

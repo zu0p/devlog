@@ -1,6 +1,7 @@
 import { GenerateInputsProps } from "../types"
 import { useState, KeyboardEvent } from "react"
 import { POST_TYPES } from "../consts"
+import { CircleX } from "lucide-react"
 
 const GenerateInputs = ({ value, onChange }: GenerateInputsProps) => {
   const [keywordInput, setKeywordInput] = useState("")
@@ -72,15 +73,7 @@ const GenerateInputs = ({ value, onChange }: GenerateInputsProps) => {
                   onClick={() => removeKeyword(index)}
                   className="rounded-full p-0.5 transition-colors hover:bg-blue-200 dark:hover:bg-blue-800"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="15px"
-                    width="15px"
-                    viewBox="0 -960 960 960"
-                    fill="#fff"
-                  >
-                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                  </svg>
+                  <CircleX className="h-3.75 w-3.75" />
                 </button>
               </span>
             ))}
