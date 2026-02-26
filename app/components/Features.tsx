@@ -10,7 +10,7 @@ const Features = () => {
         <h3 className="mb-2 text-lg font-bold text-gray-900 md:text-xl dark:text-white">
           다양한 <br className="flex md:hidden" /> 글 유형
         </h3>
-        <p className="hidden text-gray-600 md:flex dark:text-gray-400">
+        <p className="hidden text-gray-600 md:flex md:justify-center dark:text-gray-400">
           Tutorial, TIL, Troubleshooting 등<br />
           원하는 형식으로 <br />
           글을 생성할 수있습니다.
@@ -24,7 +24,7 @@ const Features = () => {
         <h3 className="mb-2 text-lg font-bold text-gray-900 md:text-xl dark:text-white">
           빠른 생성
         </h3>
-        <p className="hidden text-gray-600 md:flex dark:text-gray-400">
+        <p className="hidden text-gray-600 md:flex md:justify-center dark:text-gray-400">
           몇 초 만에 전문적인 <br />
           기술 블로그 글이 완성됩니다.
         </p>
@@ -37,9 +37,9 @@ const Features = () => {
         <h3 className="mb-2 text-lg font-bold text-gray-900 md:text-xl dark:text-white">
           간편한 <br className="flex md:hidden" /> 내보내기
         </h3>
-        <p className="hidden text-gray-600 md:flex dark:text-gray-400">
-          마크다운(.md)과 HTML(.html) 형식으로 <br />
-          다운로드할 수 있습니다.
+        <p className="hidden text-gray-600 md:flex md:justify-center dark:text-gray-400">
+          마크다운(.md)과 HTML(.html) <br />
+          형식으로 다운로드할 수 있습니다.
         </p>
       </div>
     </div>
