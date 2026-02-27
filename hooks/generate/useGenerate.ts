@@ -4,15 +4,23 @@ import { GenerateContract } from "@/services/generate.contract"
 import { useGeneratedArticle } from "@/stores/generatedArticle.store"
 
 export const useGenerate = () => {
-  const { setGeneratedArticle, setError, setLoading } = useGeneratedArticle()
+  const {
+    setGeneratedArticle,
+    setGeneratedMetaDescription,
+    setGeneratedHashtags,
+    setError,
+    setLoading,
+  } = useGeneratedArticle()
 
   return useMutation({
     mutationFn: (payload: GenerateContract["request"]) =>
       generateArticle(payload),
     retry: false,
     onSuccess: (data) => {
-      const fullArticleContent = `${data.title}\n\n${data.content}`
+      const fullArticleContent = `# ${data.title}\n\n${data.content}`
       setGeneratedArticle(fullArticleContent)
+      setGeneratedHashtags(data.hashtags)
+      setGeneratedMetaDescription(data.metaDescription)
     },
     onError: (error) => {
       setError(error as Error)

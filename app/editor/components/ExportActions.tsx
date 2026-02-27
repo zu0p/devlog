@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { useGeneratedArticle } from "@/stores/generatedArticle.store"
 import { EditorProps } from "../types"
-import { exportDocuments } from "@/lib/exportDocuments"
+import { clipboardCopy, exportDocuments } from "@/lib/exportDocuments"
 import { useRouter } from "next/navigation"
 import { ArrowDownToLine, Copy, FileDown, RefreshCcw } from "lucide-react"
+import { toast } from "react-toastify"
 
 const ExportActions = ({ editorRef }: EditorProps) => {
   const [showDownloadMenu, setShowDownloadMenu] = useState(false)
@@ -17,21 +18,21 @@ const ExportActions = ({ editorRef }: EditorProps) => {
   const handleSave = () => {
     const markdown = editorRef.current?.getInstance()?.getMarkdown()
     setGeneratedArticle(markdown)
-    window.alert("저장 완료!")
+    toast.success("변경사항이 저장되었습니다.")
   }
 
   const handleCopy = () => {
     if (!isSaveUpdate()) {
-      window.alert("변경사항을 먼저 저장하세요!")
+      toast.warn("변경사항을 먼저 저장하세요!")
       return
     }
     const markdown = editorRef.current!.getInstance().getMarkdown()
-    navigator.clipboard.writeText(markdown)
+    clipboardCopy(markdown, "클립보드 복사 완료")
   }
 
   const handleDownloadMd = () => {
     if (!isSaveUpdate()) {
-      window.alert("변경사항을 먼저 저장하세요!")
+      toast.warn("변경사항을 먼저 저장하세요!")
       return
     }
     const markdown = editorRef.current!.getInstance().getMarkdown()
@@ -40,7 +41,7 @@ const ExportActions = ({ editorRef }: EditorProps) => {
 
   const handleDownloadHtml = () => {
     if (!isSaveUpdate()) {
-      window.alert("변경사항을 먼저 저장하세요!")
+      toast.warn("변경사항을 먼저 저장하세요!")
       return
     }
     const html = editorRef.current!.getInstance().getHTML()
@@ -59,7 +60,7 @@ const ExportActions = ({ editorRef }: EditorProps) => {
     <div className="flex flex-wrap items-center justify-items-center gap-3">
       <button
         onClick={handleSave}
-        className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-amber-300 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-300 md:flex-none dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+        className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-amber-300 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-300 md:flex-none dark:text-gray-300 dark:hover:bg-gray-600"
       >
         <ArrowDownToLine className="flex h-5 w-5 text-white md:hidden" />
         <span className="hidden md:inline">변경사항 저장</span>

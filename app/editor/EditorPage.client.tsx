@@ -7,6 +7,7 @@ import EditorHeader from "./components/EditorHeader"
 import ExportActions from "./components/ExportActions"
 import { Editor as ToastEditorType } from "@toast-ui/react-editor"
 import dynamic from "next/dynamic"
+import MetaData from "./components/MetaData"
 
 const ToastUIEditor = dynamic(() => import("./components/ToastUIEditor"), {
   ssr: false,
@@ -22,6 +23,7 @@ const EditorPage = () => {
   return (
     <div className="m-3 space-y-4 md:m-0">
       <EditorHeader />
+      <MetaData />
       <ToastUIEditor editorRef={editorRef} />
       <ExportActions editorRef={editorRef} />
     </div>
