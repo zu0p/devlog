@@ -3,13 +3,33 @@ import { basePrompt } from "@/logics/prompt/templates/base"
 import { GeneratedArticle } from "@/services/generate.contract"
 import { NextResponse } from "next/server"
 import OpenAI from "openai"
+import { z } from "zod"
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
 
+const GenerateAPIRequestSchema = z.object({
+  title: z.string().min(1),
+  keywords: z.array(z.string().min(1)),
+  style: z.enum(["til", "tutorial", "troubleshooting"]),
+})
+
+const GeneratedArticleSchema = z.object({
+  title: z.string(),
+  content: z.string(),
+  hashtags: z.array(z.string()),
+  metaDescription: z.string(),
+})
+
 export async function POST(req: Request) {
-  const { title, keywords, style } = await req.json()
+  const requestJson = await req.json()
+
+  // request zod verification
+  const request = GenerateAPIRequestSchema.safeParse(requestJson)
+  if (!request.success)
+    return NextResponse.json({ message: "Request Zod Error" }, { status: 500 })
+  const { title, keywords, style } = request.data
 
   const response = await client.chat.completions.create({
     model: "gpt-3.5-turbo",
@@ -29,10 +49,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Empty AI response" }, { status: 500 })
   }
 
-  let article: GeneratedArticle
-
+  let articleJson: GeneratedArticle
+  let article
   try {
-    article = JSON.parse(rawContent)
+    articleJson = JSON.parse(rawContent)
+
+    // respose zod verfication
+    article = GeneratedArticleSchema.safeParse(articleJson)
+    if (!article.success) {
+      return NextResponse.json(
+        { message: "Response Zod Error" },
+        { status: 500 }
+      )
+    }
   } catch {
     return NextResponse.json(
       { message: "Failed to parse AI response" },
@@ -40,5 +69,5 @@ export async function POST(req: Request) {
     )
   }
 
-  return NextResponse.json(article)
+  return NextResponse.json(article.data)
 }
