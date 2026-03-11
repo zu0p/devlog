@@ -16,7 +16,7 @@ const Button = ({
     <button
       onClick={onClick}
       className={cn(
-        "flex items-center justify-center disabled:cursor-not-allowed disabled:opacity-50",
+        "flex cursor-pointer items-center justify-center disabled:cursor-not-allowed disabled:opacity-50",
         isFull ? "w-full" : "",
         buttonSizeClass[size],
         buttonVariantClass[variant],
