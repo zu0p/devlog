@@ -102,7 +102,7 @@ const GenerateInputs = ({ value, onChange }: GenerateInputsProps) => {
               onClick={() => onChange("style", type)}
               className={`${
                 value.style === type
-                  ? "border-blue-600 bg-blue-50 text-blue-600 dark:border-blue-600 dark:bg-blue-900/20 dark:text-blue-400"
+                  ? "border-blue-600 bg-blue-50 text-blue-600 hover:border-blue-600 dark:border-blue-600 dark:bg-blue-900/20 dark:text-blue-400 dark:hover:border-blue-600"
                   : "border-gray-300 bg-white text-gray-700 hover:border-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:border-gray-600"
               }`}
             >
