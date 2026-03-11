@@ -7,6 +7,10 @@ const GenerateInputs = ({ value, onChange }: GenerateInputsProps) => {
   const [keywordInput, setKeywordInput] = useState("")
 
   const handleKeywordKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing) {
+      return
+    }
+
     if (e.key === "Enter" && keywordInput.trim()) {
       e.preventDefault()
       if (!value.keywords.includes(keywordInput.trim())) {
