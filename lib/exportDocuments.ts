@@ -1,4 +1,4 @@
-import { toast } from "react-toastify"
+import { showToast } from "@/stores/toast.store"
 
 export type ExportFormat = "markdown" | "html"
 
@@ -26,5 +26,8 @@ export const exportDocuments = (
 
 export const clipboardCopy = (value: string, message?: string) => {
   navigator.clipboard.writeText(value)
-  toast.success(message ? message : "복사 완료!")
+  showToast({
+    variant: "success",
+    message: message ? message : "복사 완료!",
+  })
 }

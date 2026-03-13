@@ -4,12 +4,13 @@ import { EditorProps } from "../types"
 import { clipboardCopy, exportDocuments } from "@/lib/exportDocuments"
 import { useRouter } from "next/navigation"
 import { ArrowDownToLine, Copy, FileDown, RefreshCcw } from "lucide-react"
-import { toast } from "react-toastify"
+import { useToast } from "@/stores/toast.store"
 import Button from "@/ds/components/atoms/button/Button"
 
 const ExportActions = ({ editorRef }: EditorProps) => {
   const [showDownloadMenu, setShowDownloadMenu] = useState(false)
   const { content, setGeneratedArticle } = useGeneratedArticle()
+  const { showToast } = useToast()
 
   const isSaveUpdate = () => {
     const markdown = editorRef.current?.getInstance()?.getMarkdown()
@@ -19,34 +20,42 @@ const ExportActions = ({ editorRef }: EditorProps) => {
   const handleSave = () => {
     const markdown = editorRef.current?.getInstance()?.getMarkdown()
     setGeneratedArticle(markdown)
-    toast.success("변경사항이 저장되었습니다.")
+    showToast({
+      variant: "success",
+      message: "변경사항 저장 완료!",
+    })
+  }
+
+  const verificateSaveUpdate = () => {
+    if (!isSaveUpdate()) {
+      showToast({
+        variant: "warning",
+        message: "변경사항을 먼저 저장하세요!",
+      })
+      return false
+    }
+    return true
   }
 
   const handleCopy = () => {
-    if (!isSaveUpdate()) {
-      toast.warn("변경사항을 먼저 저장하세요!")
-      return
+    if (verificateSaveUpdate()) {
+      const markdown = editorRef.current!.getInstance().getMarkdown()
+      clipboardCopy(markdown, "클립보드 복사 완료")
     }
-    const markdown = editorRef.current!.getInstance().getMarkdown()
-    clipboardCopy(markdown, "클립보드 복사 완료")
   }
 
   const handleDownloadMd = () => {
-    if (!isSaveUpdate()) {
-      toast.warn("변경사항을 먼저 저장하세요!")
-      return
+    if (verificateSaveUpdate()) {
+      const markdown = editorRef.current!.getInstance().getMarkdown()
+      exportDocuments("markdown", markdown)
     }
-    const markdown = editorRef.current!.getInstance().getMarkdown()
-    exportDocuments("markdown", markdown)
   }
 
   const handleDownloadHtml = () => {
-    if (!isSaveUpdate()) {
-      toast.warn("변경사항을 먼저 저장하세요!")
-      return
+    if (verificateSaveUpdate()) {
+      const html = editorRef.current!.getInstance().getHTML()
+      exportDocuments("html", html)
     }
-    const html = editorRef.current!.getInstance().getHTML()
-    exportDocuments("html", html)
   }
 
   const router = useRouter()
