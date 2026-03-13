@@ -4,7 +4,7 @@ import ReactQueryProvider from "./providers/ReactQueryProvider"
 import "./globals.css"
 import NextThemeProvider from "./providers/NextThemeProvider"
 import MainHeader from "./components/MainHeader"
-import { ToastContainer } from "react-toastify"
+import ToastProvider from "./providers/ToastProvider"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,13 +38,7 @@ export default function RootLayout({
       >
         <ReactQueryProvider>
           <NextThemeProvider>
-            <ToastContainer
-              position="top-center"
-              autoClose={3000}
-              hideProgressBar={true}
-              theme="colored"
-              closeOnClick
-            />
+            <ToastProvider />
             <MainHeader />
             <main className="pt-14">{children}</main>
           </NextThemeProvider>
