@@ -1,6 +1,7 @@
 import { DialogVariant } from "@/ds/tokens/dialog/variants"
+import { ButtonProps } from "../../atoms/button/Button.types"
 
-type Button = {
+interface Button extends Omit<Partial<ButtonProps>, "onClick"> {
   text: string
   onClick: () => void
 }

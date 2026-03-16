@@ -18,15 +18,20 @@ const Dialog: React.FC<DialogProps> = ({ message, variant, buttons }) => {
 
   return (
     <div className={cn(baseStyles, dialogVariantClass[variant])}>
-      <span className={`whitespace-pre-line`}>{message}</span>
-      <div className="mt-4 flex justify-center gap-x-2">
+      <span className={`text-lg font-medium whitespace-pre-line`}>
+        {message}
+      </span>
+      <div className="mt-4 flex justify-between gap-x-2">
         {buttons &&
           buttons.length > 0 &&
           buttons.map((button) => (
             <Button
-              size="sm"
-              onClick={button.onClick}
               key={`dialog-button-${button.text}`}
+              variant={button?.variant ? button.variant : "outline"}
+              size={button?.size ? button.size : "sm"}
+              isFull={button?.isFull ? button.isFull : true}
+              className={button?.className}
+              onClick={button.onClick}
             >
               {button.text}
             </Button>
