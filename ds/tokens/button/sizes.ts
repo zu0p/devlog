@@ -1,6 +1,15 @@
-export type buttonSize = "default" | "sm" | "lg" | "xl" | "icon-sm" | "icon-md"
+export const BUTTON_SIZES = [
+  "default",
+  "sm",
+  "lg",
+  "xl",
+  "icon-sm",
+  "icon-md",
+] as const
 
-export const buttonSizeClass: Record<buttonSize, string> = {
+export type ButtonSize = (typeof BUTTON_SIZES)[number]
+
+export const buttonSizeClass: Record<ButtonSize, string> = {
   default: "h-11 px-4 py-3 rounded-lg gap-2",
   sm: "h-10 rounded-md px-3 gap-1.5",
   lg: "h-12 rounded-lg px-6 gap-2",
