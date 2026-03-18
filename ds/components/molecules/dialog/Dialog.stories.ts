@@ -77,28 +77,23 @@ export const InteractionScenario: Story = {
   play: async ({ canvasElement, step, args }) => {
     const canvas = within(canvasElement)
 
-    // 1. 다이얼로그 메시지가 제대로 표시되는지 확인
     await step("메시지 표시 확인", async () => {
       await expect(
         canvas.getByText("변경사항을 저장하시겠습니까?")
       ).toBeInTheDocument()
     })
 
-    // 2. '저장하기' 버튼 클릭 시뮬레이션
     await step("저장하기 버튼 클릭", async () => {
       const saveButton = canvas.getByRole("button", { name: /저장하기/i })
       await userEvent.click(saveButton)
 
-      // onClick (spy) 함수가 호출되었는지 확인
       await expect(args.buttons?.[1].onClick).toHaveBeenCalled()
     })
 
-    // 3. '나중에' 버튼 클릭 시뮬레이션
     await step("나중에 버튼 클릭", async () => {
       const laterButton = canvas.getByRole("button", { name: /나중에/i })
       await userEvent.click(laterButton)
 
-      // onClick (spy) 함수가 호출되었는지 확인
       await expect(args.buttons?.[0].onClick).toHaveBeenCalled()
     })
   },
