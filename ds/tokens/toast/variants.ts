@@ -1,4 +1,11 @@
-export type ToastVariant = "default" | "warning" | "destructive" | "success"
+export const TOAST_VARIANTS = [
+  "default",
+  "warning",
+  "destructive",
+  "success",
+] as const
+
+export type ToastVariant = (typeof TOAST_VARIANTS)[number]
 
 export const toastVariantClass: Record<ToastVariant, string> = {
   default: "bg-blue-600 text-white transition-colors",
