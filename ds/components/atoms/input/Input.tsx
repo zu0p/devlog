@@ -1,33 +1,27 @@
 import { cn } from "@/lib/utils"
 import { InputProps } from "./Input.types"
 import { inputSizeClass } from "@/ds/tokens/input/sizes"
+import { inputVariantClass } from "@/ds/tokens/input/variants"
 
 const Input = ({
-  size = "md",
-  type,
-  placeholder,
+  size = "lg",
+  variant = "default",
   className,
-  onChange,
-  readOnly = false,
   ...props
 }: InputProps) => {
+  const baseStyles =
+    "w-full rounded-lg outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+
   return (
-    <div>
-      <input
-        className={cn(
-          "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input bg-input-background flex w-full min-w-0 rounded-md border px-3 py-1 text-base transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-          "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-          "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-          readOnly ? "cursor-default" : "",
-          inputSizeClass[size],
-          className
-        )}
-        type={type}
-        placeholder={placeholder}
-        onChange={onChange}
-        {...props}
-      />
-    </div>
+    <input
+      className={cn(
+        baseStyles,
+        inputSizeClass[size],
+        inputVariantClass[variant],
+        className
+      )}
+      {...props}
+    />
   )
 }
 

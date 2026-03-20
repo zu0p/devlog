@@ -1,10 +1,10 @@
-import LoadingSpinner from "../components/LoadingSpinner"
+import Spinner from "@/ds/components/atoms/spinner/Spinner"
 
 const LoadingPage = () => {
   return (
     <div className="flex flex-col items-center justify-center py-20">
-      <LoadingSpinner />
-      <p className="text-lg text-gray-600 dark:text-gray-400">
+      <Spinner size="lg" />
+      <p className="mt-10 text-lg text-gray-600 dark:text-gray-400">
         블로그 글을 생성하고 있습니다...
       </p>
       <p className="mt-2 text-sm text-gray-500 dark:text-gray-500">

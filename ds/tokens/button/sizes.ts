@@ -1,8 +1,19 @@
-export type buttonSize = "default" | "sm" | "lg" | "icon"
+export const BUTTON_SIZES = [
+  "default",
+  "sm",
+  "lg",
+  "xl",
+  "icon-sm",
+  "icon-md",
+] as const
 
-export const buttonSizeClass: Record<buttonSize, string> = {
-  default: "h-9 px-4 py-2 has-[>svg]:px-3",
-  sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-  lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-  icon: "size-9 rounded-md",
+export type ButtonSize = (typeof BUTTON_SIZES)[number]
+
+export const buttonSizeClass: Record<ButtonSize, string> = {
+  default: "h-11 px-4 py-3 rounded-lg gap-2",
+  sm: "h-10 rounded-md px-3 gap-1.5",
+  lg: "h-12 rounded-lg px-6 gap-2",
+  xl: "h-15 rounded-lg px-8 py-4 text-lg gap-2",
+  "icon-sm": "p-0.5 rounded-full flex items-center justify-center",
+  "icon-md": "p-2 rounded-md flex items-center justify-center",
 }

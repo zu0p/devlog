@@ -1,3 +1,4 @@
+import storybook from "eslint-plugin-storybook"
 import js from "@eslint/js"
 import tseslint from "typescript-eslint"
 import reactHooks from "eslint-plugin-react-hooks"
@@ -7,7 +8,6 @@ import prettier from "eslint-config-prettier"
 export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
-
   {
     files: ["**/*.{ts,tsx,js,jsx}"],
     languageOptions: {
@@ -38,8 +38,8 @@ export default [
     },
   },
   prettier,
-
   {
     ignores: [".next/**", "node_modules/**", "out/**", "build/**"],
   },
+  ...storybook.configs["flat/recommended"],
 ]

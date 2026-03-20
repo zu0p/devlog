@@ -7,6 +7,7 @@ const Button = ({
   className,
   variant = "default",
   size = "default",
+  isFull = false,
   children,
   onClick,
   ...props
@@ -15,6 +16,8 @@ const Button = ({
     <button
       onClick={onClick}
       className={cn(
+        "flex cursor-pointer items-center justify-center disabled:cursor-not-allowed disabled:opacity-50",
+        isFull ? "w-full" : "",
         buttonSizeClass[size],
         buttonVariantClass[variant],
         className

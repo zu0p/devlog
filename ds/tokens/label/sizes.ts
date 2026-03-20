@@ -1,7 +1,7 @@
 export type LabelSize = "sm" | "md" | "lg"
 
 export const labelSizeClass: Record<LabelSize, string> = {
-  sm: "h-[1.5rem] px-2 text-sm",
-  md: "h-[1.75rem] px-3 text-base",
-  lg: "h-[1.875rem] px-3 text-base",
+  sm: "h-[1.5rem] text-sm font-medium",
+  md: "h-[1.75rem] text-base font-bold",
+  lg: "h-[1.875rem] text-base font-bold",
 }

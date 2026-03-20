@@ -1,5 +1,6 @@
 "use client"
 
+import Button from "@/ds/components/atoms/button/Button"
 import { clipboardCopy } from "@/lib/exportDocuments"
 import { useGeneratedArticle } from "@/stores/generatedArticle.store"
 import { Copy } from "lucide-react"
@@ -28,13 +29,14 @@ const MetaData = () => {
             <span className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               SEO Meta Description
             </span>
-            <button
+            <Button
               type="button"
+              size="icon-sm"
+              variant="ghost"
               onClick={handleCopyMetaDescription}
-              className="rounded-full p-1 transition-colors hover:bg-blue-200 dark:hover:bg-blue-800"
             >
               <Copy className="h-3.75 w-3.75" />
-            </button>
+            </Button>
           </div>
 
           <div className="w-full cursor-default rounded-md bg-gray-100 px-3 py-3 text-sm text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-blue-200">
@@ -49,19 +51,20 @@ const MetaData = () => {
             <span className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Hashtags
             </span>
-            <button
+            <Button
               type="button"
+              size="icon-sm"
+              variant="ghost"
               onClick={handleCopyHashTags}
-              className="rounded-full p-1 transition-colors hover:bg-blue-200 dark:hover:bg-blue-800"
             >
               <Copy className="h-3.75 w-3.75" />
-            </button>
+            </Button>
           </div>
           <div className="flex w-full cursor-default gap-2 overflow-x-auto rounded-md bg-gray-100 px-3 py-3 text-sm text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-blue-200">
             {hashtags.map((hashtag, index) => (
               <span
                 key={index}
-                className="inline-flex cursor-default items-center gap-1 px-2 py-1 text-sm"
+                className="inline-flex cursor-default items-center gap-1 px-2 py-1 text-sm whitespace-nowrap"
               >
                 #{hashtag}
               </span>

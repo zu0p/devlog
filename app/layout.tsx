@@ -3,8 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google"
 import ReactQueryProvider from "./providers/ReactQueryProvider"
 import "./globals.css"
 import NextThemeProvider from "./providers/NextThemeProvider"
-import Header from "./components/Header"
-import { ToastContainer } from "react-toastify"
+import MainHeader from "./components/MainHeader"
+import DialogContainer from "@/ds/components/molecules/dialog/DialogContainer"
+import ToastContainer from "@/ds/components/molecules/toast/ToastContainer"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,14 +39,9 @@ export default function RootLayout({
       >
         <ReactQueryProvider>
           <NextThemeProvider>
-            <ToastContainer
-              position="top-center"
-              autoClose={3000}
-              hideProgressBar={true}
-              theme="colored"
-              closeOnClick
-            />
-            <Header />
+            <ToastContainer />
+            <DialogContainer />
+            <MainHeader />
             <main className="pt-14">{children}</main>
           </NextThemeProvider>
         </ReactQueryProvider>
