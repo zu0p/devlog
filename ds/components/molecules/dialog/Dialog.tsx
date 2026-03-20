@@ -1,9 +1,45 @@
 import { cn } from "@/lib/utils"
-import { DialogProps } from "./Dialog.types"
+import {
+  DialogButtonProps,
+  DialogLabelProps,
+  DialogProps,
+  DialogTitleProps,
+} from "./Dialog.types"
 import { dialogVariantClass } from "@/ds/tokens/dialog/variants"
 import Button from "../../atoms/button/Button"
+import { createPortal } from "react-dom"
 
-const Dialog: React.FC<DialogProps> = ({ message, variant, buttons }) => {
+const DialogTitle = ({ children, className }: DialogTitleProps) => (
+  <div className={cn("mb-2 text-lg font-bold", className)}>{children}</div>
+)
+
+const DialogLabel = ({ children, className }: DialogLabelProps) => (
+  <div className={cn("mb-4 text-base", className)}>{children}</div>
+)
+
+const DialogButton = ({ buttons }: DialogButtonProps) => (
+  <div className="flex w-full justify-between gap-2">
+    {buttons?.map((button, index) => (
+      <Button
+        key={`${button.text}-${index}`}
+        variant={button?.variant || "outline"}
+        size={button?.size || "sm"}
+        isFull={button?.isFull ?? true}
+        className={cn(button?.className)}
+        onClick={button.onClick}
+      >
+        {button.text}
+      </Button>
+    ))}
+  </div>
+)
+
+const DialogMain = ({
+  children,
+  variant = "default",
+  className,
+  onClose,
+}: DialogProps) => {
   const baseStyles = `
     rounded-lg
     cursor-default
@@ -16,29 +52,29 @@ const Dialog: React.FC<DialogProps> = ({ message, variant, buttons }) => {
     animate-slide-up
   `
 
-  return (
-    <div className={cn(baseStyles, dialogVariantClass[variant])}>
-      <span className={`text-lg font-medium whitespace-pre-line`}>
-        {message}
-      </span>
-      <div className="mt-4 flex justify-between gap-x-2">
-        {buttons &&
-          buttons.length > 0 &&
-          buttons.map((button) => (
-            <Button
-              key={`dialog-button-${button.text}`}
-              variant={button?.variant ? button.variant : "outline"}
-              size={button?.size ? button.size : "sm"}
-              isFull={button?.isFull ? button.isFull : true}
-              className={button?.className}
-              onClick={button.onClick}
-            >
-              {button.text}
-            </Button>
-          ))}
+  return createPortal(
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-100"
+      id="dialog-backdrop"
+      onClick={onClose}
+    >
+      <div
+        className={cn(baseStyles, dialogVariantClass[variant], className)}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {children && children}
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
+
+const Dialog = Object.assign(DialogMain, {
+  Title: DialogTitle,
+  Label: DialogLabel,
+  Button: DialogButton,
+})
 
 export default Dialog
