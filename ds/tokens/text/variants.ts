@@ -1,9 +1,19 @@
-export type TextVariant = "h1" | "h2" | "h3" | "body" | "caption"
+export const TEXT_VARIANTS = [
+  "h1",
+  "h2",
+  "h3",
+  "body1",
+  "body2",
+  "caption",
+] as const
+
+export type TextVariant = (typeof TEXT_VARIANTS)[number]
 
 export const textVariantClass: Record<TextVariant, string> = {
-  h1: "text-2xl font-medium",
-  h2: "text-xl font-medium",
+  h1: "text-2xl font-bold",
+  h2: "text-xl font-bold",
   h3: "text-lg font-medium",
-  body: "text-base font-normal",
-  caption: "text-sm font-normal text-muted-foreground",
+  body1: "text-base font-normal",
+  body2: "text-sm font-normal",
+  caption: "text-xs font-normal text-muted-foreground",
 }
