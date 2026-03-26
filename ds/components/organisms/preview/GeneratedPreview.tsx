@@ -72,7 +72,7 @@ const GeneratedPreview = ({
             <Skeleton className="h-13 w-full" />
           ) : (
             <div className="flex w-full cursor-default gap-2 overflow-x-auto rounded-md bg-gray-100 px-3 py-3 text-sm text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-blue-200">
-              {hashtags?.array.map((hashtag, index) => (
+              {hashtags?.array?.map((hashtag, index) => (
                 <span
                   key={index}
                   className="inline-flex cursor-default items-center gap-1 px-2 py-1 text-sm whitespace-nowrap"
