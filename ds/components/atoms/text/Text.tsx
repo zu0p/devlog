@@ -5,7 +5,7 @@ import { ElementType } from "react"
 
 export const Text = <T extends ElementType = "span">({
   as,
-  variant = "body",
+  variant = "body1",
   className,
   children,
   ...props
