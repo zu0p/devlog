@@ -29,7 +29,8 @@ const GeneratePage = () => {
 
   const router = useRouter()
 
-  const handleGenerate = () => {
+  const handleGenerate = (e: React.FormEvent) => {
+    e.preventDefault()
     generateMutation.mutate(inputs)
     router.push("/editor")
   }
@@ -37,13 +38,12 @@ const GeneratePage = () => {
   return (
     <div className="mx-auto h-full max-w-2xl">
       <GenerateTitle />
-      <div className="m-3 space-y-6 md:m-0">
+      <form onSubmit={handleGenerate} className="m-3 space-y-6 md:m-0">
         <GenerateInputs value={inputs} onChange={handleChange} />
         <GenerateActions
           disabled={!inputs.title.length || generateMutation.isPending}
-          onClick={handleGenerate}
         />
-      </div>
+      </form>
     </div>
   )
 }
