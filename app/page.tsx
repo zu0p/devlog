@@ -2,43 +2,50 @@ import Image from "next/image"
 import LandingTitle from "./components/LandingTitle"
 import Features from "./components/Features"
 import HowItWorks from "./components/HowItWorks"
-import Button from "@/ds/components/atoms/button/Button"
-import Link from "next/link"
-import { ArrowBigRightDash, Sparkles } from "lucide-react"
+import HandleRouteGenerateButton from "./components/HandleRouteGenerateButton"
 
 export default function Home() {
   return (
     <div className="m-3 mx-auto max-w-6xl">
-      <div className="mb-12 flex flex-col items-center text-center">
+      <section
+        aria-label="서비스 소개"
+        className="mb-12 flex flex-col items-center text-center"
+      >
         <LandingTitle />
-        <Button size="xl" className="font-medium hover:shadow-xl">
-          <Sparkles className="h-5 w-5" />
-          <Link href={"/generate"}>글 생성하기</Link>
-        </Button>
-      </div>
+        <HandleRouteGenerateButton
+          size="xl"
+          className="font-medium hover:shadow-xl"
+          label="글 생성하기"
+          icon="sparkles"
+        />
+      </section>
 
-      <div className="mb-16 flex w-full justify-center overflow-hidden">
+      <section className="mb-16 flex w-full justify-center overflow-hidden">
         <Image
-          alt="DevLogAI - 기술 블로그 생성"
+          alt="DevLogAI - 기술 블로그 생성 서비스 시연 이미지"
           src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&h=600&fit=crop"
           width={600}
           height={400}
+          priority
         />
-      </div>
+      </section>
 
-      <Features />
+      <section aria-label="기능 소개">
+        <Features />
+      </section>
 
-      <div className="rounded-2xl bg-gray-50 p-8 md:p-12 dark:bg-gray-800">
-        <div className="mt-8 flex flex-col text-center">
-          <HowItWorks />
-          <div className="mt-12 flex flex-col items-center md:mt-8">
-            <Button size="lg">
-              <Link href={"/generate"}>지금 시작하기</Link>
-              <ArrowBigRightDash className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-      </div>
+      <section
+        aria-label="서비스 이용 방법 설명"
+        className="flex flex-col items-center rounded-2xl bg-gray-50 p-8 pt-16 md:p-12 dark:bg-gray-800"
+      >
+        <HowItWorks />
+        <HandleRouteGenerateButton
+          size="lg"
+          label="지금 시작하기"
+          icon="right"
+          className="mt-12 flex md:mt-8"
+        />
+      </section>
     </div>
   )
 }
