@@ -84,13 +84,25 @@ const ExportActions = ({ editorRef }: EditorProps) => {
   }
   return (
     <div className="grid grid-cols-4 items-center gap-3">
-      <Button variant="warning" size="sm" onClick={handleSave} isFull>
-        <ArrowDownToLine className="flex h-5 w-5 text-white md:hidden" />
+      <Button
+        variant="warning"
+        size="sm"
+        onClick={handleSave}
+        isFull
+        aria-label="변경사항 저장"
+      >
+        <ArrowDownToLine className="flex h-5 w-5 text-white md:hidden" aria-hidden="true" />
         <span className="hidden md:inline">변경사항 저장</span>
       </Button>
 
-      <Button variant="secondary" size="sm" onClick={handleReset} isFull>
-        <RefreshCcw className="flex h-5 w-5 text-white md:hidden" />
+      <Button
+        variant="secondary"
+        size="sm"
+        onClick={handleReset}
+        isFull
+        aria-label="초기화"
+      >
+        <RefreshCcw className="flex h-5 w-5 text-white md:hidden" aria-hidden="true" />
         <span className="hidden md:inline">초기화</span>
       </Button>
 
@@ -100,8 +112,11 @@ const ExportActions = ({ editorRef }: EditorProps) => {
           onClick={() => setShowDownloadMenu(!showDownloadMenu)}
           className="px-3"
           isFull
+          aria-label="다운로드 메뉴 열기"
+          aria-haspopup="menu"
+          aria-expanded={showDownloadMenu}
         >
-          <FileDown className="flex h-5 w-5 text-white md:hidden" />
+          <FileDown className="flex h-5 w-5 text-white md:hidden" aria-hidden="true" />
           <span className="hidden md:inline">다운로드</span>
         </Button>
 
@@ -111,13 +126,17 @@ const ExportActions = ({ editorRef }: EditorProps) => {
               className="fixed inset-0 z-10"
               onClick={() => setShowDownloadMenu(false)}
             />
-            <div className="absolute left-0 z-20 mt-2 w-40 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
+            <div
+              className="absolute left-0 z-20 mt-2 w-40 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800"
+              role="menu"
+            >
               <Button
                 variant="ghost"
                 size="lg"
                 isFull
                 className="rounded-none"
                 onClick={handleDownloadMd}
+                role="menuitem"
               >
                 .md 파일
               </Button>
@@ -127,6 +146,7 @@ const ExportActions = ({ editorRef }: EditorProps) => {
                 isFull
                 className="rounded-none"
                 onClick={handleDownloadHtml}
+                role="menuitem"
               >
                 .html 파일
               </Button>
@@ -135,8 +155,14 @@ const ExportActions = ({ editorRef }: EditorProps) => {
         )}
       </div>
 
-      <Button variant="success" size="sm" onClick={handleCopy} isFull>
-        <Copy className="flex h-5 w-5 text-white md:hidden" />
+      <Button
+        variant="success"
+        size="sm"
+        onClick={handleCopy}
+        isFull
+        aria-label="클립보드에 복사"
+      >
+        <Copy className="flex h-5 w-5 text-white md:hidden" aria-hidden="true" />
         <span className="hidden md:inline">복사</span>
       </Button>
     </div>

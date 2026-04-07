@@ -19,6 +19,7 @@ const GeneratedPreview = ({
     <div className={cn("flex flex-col gap-6", className)}>
       <div className="mt-8 min-h-8">
         <Text
+          as="h1"
           variant="h1"
           className="flex h-8 flex-wrap items-center text-2xl font-bold break-all text-gray-900 dark:text-white"
         >
@@ -29,17 +30,18 @@ const GeneratedPreview = ({
       <div className="min-h-12 w-full">
         <div className="w-full">
           <div className="mb-2 flex items-center justify-between">
-            <span className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <h2 className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               SEO Meta Description
-            </span>
+            </h2>
             <Button
               type="button"
               size="icon-sm"
               variant="ghost"
               disabled={isLoading}
               onClick={metaDescription?.click}
+              aria-label="SEO 메타 설명 복사"
             >
-              <Copy className="h-3.75 w-3.75" />
+              <Copy className="h-3.75 w-3.75" aria-hidden="true" />
             </Button>
           </div>
           {isLoading ? (
@@ -55,37 +57,41 @@ const GeneratedPreview = ({
       <div className="flex min-h-7 flex-wrap gap-2">
         <div className="w-full">
           <div className="mb-2 flex items-center justify-between">
-            <span className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <h2 className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Hashtags
-            </span>
+            </h2>
             <Button
               type="button"
               size="icon-sm"
               variant="ghost"
               disabled={isLoading}
               onClick={hashtags?.click}
+              aria-label="해시태그 복사"
             >
-              <Copy className="h-3.75 w-3.75" />
+              <Copy className="h-3.75 w-3.75" aria-hidden="true" />
             </Button>
           </div>
           {isLoading ? (
             <Skeleton className="h-13 w-full" />
           ) : (
-            <div className="flex w-full cursor-default gap-2 overflow-x-auto rounded-md bg-gray-100 px-3 py-3 text-sm text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-blue-200">
+            <ul className="flex w-full cursor-default gap-2 overflow-x-auto rounded-md bg-gray-100 px-3 py-3 text-sm text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-blue-200">
               {hashtags?.array?.map((hashtag, index) => (
-                <span
+                <li
                   key={index}
                   className="inline-flex cursor-default items-center gap-1 px-2 py-1 text-sm whitespace-nowrap"
                 >
                   #{hashtag}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
           )}
         </div>
       </div>
 
-      <div className="min-h-100 border-t border-slate-100 pt-6 dark:border-slate-800">
+      <section
+        className="min-h-100 border-t border-slate-100 pt-6 dark:border-slate-800"
+        aria-label="블로그 글 본문"
+      >
         {isLoading ? (
           <div className="rounded-lg border border-[#dadde6] dark:border-[#494c56]">
             <div className="h-11.25 rounded-t-lg border-b border-[#ebedf2] bg-[#f7f9fc] dark:border-[#303238] dark:bg-[#232428]"></div>
@@ -103,7 +109,7 @@ const GeneratedPreview = ({
         ) : (
           content
         )}
-      </div>
+      </section>
     </div>
   )
 }
