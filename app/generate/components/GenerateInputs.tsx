@@ -53,7 +53,7 @@ const GenerateInputs = ({ value, onChange }: GenerateInputsProps) => {
         />
 
         {value.keywords.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2" aria-label="추가된 키워드">
             {value.keywords.map((keyword, index) => (
               <span
                 key={index}
@@ -66,8 +66,9 @@ const GenerateInputs = ({ value, onChange }: GenerateInputsProps) => {
                   size="icon-sm"
                   onClick={() => removeKeyword(index)}
                   className="text-blue-800 transition-colors hover:bg-blue-200 dark:text-blue-200 dark:hover:bg-blue-800"
+                  aria-label={`${keyword} 키워드 삭제`}
                 >
-                  <CircleX className="h-3.75 w-3.75" />
+                  <CircleX className="h-3.75 w-3.75" aria-hidden="true" />
                 </Button>
               </span>
             ))}
@@ -75,10 +76,10 @@ const GenerateInputs = ({ value, onChange }: GenerateInputsProps) => {
         )}
       </div>
 
-      <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+      <fieldset>
+        <legend className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
           글 유형
-        </label>
+        </legend>
         <div className="grid grid-rows-3 gap-3 md:grid-cols-3">
           {POST_TYPES.map(({ type, label }) => (
             <Button
@@ -87,6 +88,7 @@ const GenerateInputs = ({ value, onChange }: GenerateInputsProps) => {
               size="lg"
               variant="outline"
               onClick={() => onChange("style", type)}
+              aria-pressed={value.style === type}
               className={`${
                 value.style === type
                   ? "border-blue-600 bg-blue-50 text-blue-600 hover:border-blue-600 dark:border-blue-600 dark:bg-blue-900/20 dark:text-blue-400 dark:hover:border-blue-600"
@@ -97,7 +99,7 @@ const GenerateInputs = ({ value, onChange }: GenerateInputsProps) => {
             </Button>
           ))}
         </div>
-      </div>
+      </fieldset>
     </>
   )
 }

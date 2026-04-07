@@ -4,7 +4,7 @@ const LandingTitle = () => {
   return (
     <>
       <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-        <Sparkle className="h-4 w-4" />
+        <Sparkle className="h-4 w-4" aria-hidden="true" />
         AI 기반 블로그 생성기
       </div>
 

@@ -29,7 +29,7 @@ const ToastUIEditor = ({ editorRef }: EditorProps) => {
   }, [isDesktop, resolvedTheme])
 
   return (
-    <div id="editor">
+    <div id="editor" aria-label="블로그 글 에디터">
       <Editor
         key={mountKey}
         height="500px"

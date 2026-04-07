@@ -33,7 +33,7 @@ const EditorPage = () => {
   if (error) return <ErrorPage />
 
   return (
-    <div className="m-3 space-y-4 md:m-0">
+    <article className="m-3 space-y-4 md:m-0">
       <GeneratedPreview
         isLoading={isLoading}
         title={"생성된 블로그 글"}
@@ -48,7 +48,7 @@ const EditorPage = () => {
         }}
       />
       {!isLoading && <ExportActions editorRef={editorRef} />}
-    </div>
+    </article>
   )
 }
 

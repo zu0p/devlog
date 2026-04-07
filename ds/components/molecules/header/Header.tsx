@@ -23,7 +23,12 @@ const Header = ({ title, logoSrc, isDarkMode, onThemeToggle }: HeaderProps) => {
         </Link>
 
         {onThemeToggle && (
-          <Button variant="ghost" size="icon-md" onClick={onThemeToggle}>
+          <Button
+            variant="ghost"
+            size="icon-md"
+            onClick={onThemeToggle}
+            aria-label={isDarkMode ? "라이트 모드로 전환" : "다크 모드로 전환"}
+          >
             {isDarkMode ? (
               <Sun className="h-5 w-5" />
             ) : (

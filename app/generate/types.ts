@@ -14,7 +14,6 @@ export interface GenerateInputsProps {
 }
 
 export interface GenerateActionsProps {
-  onClick: () => void
   disabled?: boolean
 }
 

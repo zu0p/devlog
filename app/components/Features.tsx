@@ -3,9 +3,10 @@ import { Download, FileText, Zap } from "lucide-react"
 const Features = () => {
   return (
     <div className="mb-16 grid grid-cols-3 gap-8">
+      <h2 className="sr-only">주요 기능</h2>
       <div className="p-6 text-center">
         <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-          <FileText className="h-6 w-6" />
+          <FileText className="h-6 w-6" aria-hidden="true" />
         </div>
         <h3 className="mb-2 text-lg font-bold text-gray-900 md:text-xl dark:text-white">
           다양한 <br className="flex md:hidden" /> 글 유형
@@ -19,7 +20,7 @@ const Features = () => {
 
       <div className="p-6 text-center">
         <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
-          <Zap className="h-6 w-6" />
+          <Zap className="h-6 w-6" aria-hidden="true" />
         </div>
         <h3 className="mb-2 text-lg font-bold text-gray-900 md:text-xl dark:text-white">
           빠른 생성
@@ -32,7 +33,7 @@ const Features = () => {
 
       <div className="p-6 text-center">
         <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400">
-          <Download className="h-6 w-6" />
+          <Download className="h-6 w-6" aria-hidden="true" />
         </div>
         <h3 className="mb-2 text-lg font-bold text-gray-900 md:text-xl dark:text-white">
           간편한 <br className="flex md:hidden" /> 내보내기
